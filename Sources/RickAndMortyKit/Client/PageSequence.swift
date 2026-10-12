@@ -21,7 +21,7 @@ public struct PageSequence<Item: Sendable>: AsyncSequence, Sendable {
     ///   - firstPage: The page to start from.
     ///   - load: Loads one page by number.
     public init(startingAt firstPage: Int = 1, load: @escaping @Sendable (Int) async throws -> Page<Item>) {
-        self.firstPage = max(1, firstPage)
+        self.firstPage = Swift.max(1, firstPage)
         self.load = load
     }
 
