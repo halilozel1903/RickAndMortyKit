@@ -26,6 +26,8 @@ struct EpisodesScreen: View {
             }
             .background(Theme.background)
             .navigationTitle("Episodes")
+            // iOS 26 leaves the large title out with a pinned bar background; keep it inline.
+            .navigationBarTitleDisplayMode(.inline)
             .multiverseNavigationBar()
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Name or code, like S03E07")
             .autocorrectionDisabled()

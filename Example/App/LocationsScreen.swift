@@ -48,6 +48,8 @@ struct LocationsScreen: View {
             }
             .background(Theme.background)
             .navigationTitle("Locations")
+            // iOS 26 leaves the large title out with a pinned bar background; keep it inline.
+            .navigationBarTitleDisplayMode(.inline)
             .multiverseNavigationBar()
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by name")
             .autocorrectionDisabled()

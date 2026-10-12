@@ -165,6 +165,8 @@ private struct CharacterColumn: View {
                 .background(Theme.background)
         }
         .navigationTitle("Characters")
+        // iOS 26 leaves the large title out with a pinned bar background; keep it inline.
+        .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchText, prompt: "Search by name")
         .autocorrectionDisabled()
         .task(id: filter) {
@@ -203,6 +205,8 @@ private struct EpisodeColumn: View {
             }
         }
         .navigationTitle("Episodes")
+        // iOS 26 leaves the large title out with a pinned bar background; keep it inline.
+        .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchText, prompt: "Name or code")
         .task {
             await multiverse.loadEpisodes()
@@ -246,6 +250,8 @@ private struct LocationColumn: View {
             }
         }
         .navigationTitle("Locations")
+        // iOS 26 leaves the large title out with a pinned bar background; keep it inline.
+        .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchText, prompt: "Search by name")
         .autocorrectionDisabled()
         .task(id: filter) {

@@ -108,8 +108,13 @@ capture() {
   xcrun simctl install "$udid" "$APP"
   local container home
   container=$(xcrun simctl get_app_container "$udid" "$BUNDLE_ID" data)
-  # A first boot can still be setting up the home screen; give it time, then keep a capture of
-  # it so a frame where the app never came to the front is rejected.
+  # System banners (such as "Ready for Apple Intelligence") appear shortly after a first boot.
+  # Launch the app once and let them come and go before capturing anything.
+  xcrun simctl launch "$udid" "$bundle" > /dev/null 2>&1 || true
+  sleep 45
+  xcrun simctl terminate "$udid" "$bundle" 2>/dev/null || true
+  # Give the home screen time to settle, then keep a capture of it so a frame where the app never
+  # came to the front is rejected.
   sleep 15
   home="$OUT/.home-$device.png"
   xcrun simctl io "$udid" screenshot "$home"
