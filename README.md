@@ -39,9 +39,9 @@ Captured by CI from the example app, *Multiverse*, on an iPhone and an iPad simu
 
 | Characters | Character | Episodes |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/iphone-characters.png" alt="iPhone: a grid of character cards with avatars, status badges, species and last known location, under a search field and status and gender filter chips" width="250"> | <img src="docs/screenshots/iphone-character.png" alt="iPhone: Rick Sanchez's page with his avatar, status line, species, gender and first episode, his origin and last known location as location cards, and his episodes" width="250"> | <img src="docs/screenshots/iphone-episodes.png" alt="iPhone: every episode grouped by season, each with its code badge, name, air date and number of characters" width="250"> |
+| <img src="docs/screenshots/iphone-characters.png" alt="iPhone: the first page of the 826 characters as cards with their images, Alive badges, species and last known location (Rick Sanchez, Morty Smith, Summer Smith, Beth Smith), under a search field and status and gender filter chips" width="250"> | <img src="docs/screenshots/iphone-character.png" alt="iPhone: Rick Sanchez's page with his image, Alive – Human, 51 episodes, first seen in S01E01 Pilot, origin Earth (C-137) and last known location Citadel of Ricks" width="250"> | <img src="docs/screenshots/iphone-episodes.png" alt="iPhone: the episodes grouped by season, starting with season 1: Pilot, Lawnmower Dog, Anatomy Park, M. Night Shaym-Aliens!, Meeseeks and Destroy and Rick Potion #9, each with its air date and number of characters" width="250"> |
 
-<img src="docs/screenshots/ipad-browser.png" alt="iPad: a split view with a sidebar for characters, episodes and locations, the character list with filters, and Rick Sanchez's page in the detail column" width="100%">
+<img src="docs/screenshots/ipad-browser.png" alt="iPad: a split view with a sidebar for characters, episodes and locations, the list of 826 characters with their images and filters, and Rick Sanchez's page with his season 1 episodes in the detail column" width="100%">
 
 ## Features
 
