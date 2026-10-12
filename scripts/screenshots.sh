@@ -110,9 +110,9 @@ capture() {
   container=$(xcrun simctl get_app_container "$udid" "$BUNDLE_ID" data)
   # System banners (such as "Ready for Apple Intelligence") appear shortly after a first boot.
   # Launch the app once and let them come and go before capturing anything.
-  xcrun simctl launch "$udid" "$bundle" > /dev/null 2>&1 || true
+  xcrun simctl launch "$udid" "$BUNDLE_ID" > /dev/null 2>&1 || true
   sleep 45
-  xcrun simctl terminate "$udid" "$bundle" 2>/dev/null || true
+  xcrun simctl terminate "$udid" "$BUNDLE_ID" 2>/dev/null || true
   # Give the home screen time to settle, then keep a capture of it so a frame where the app never
   # came to the front is rejected.
   sleep 15
