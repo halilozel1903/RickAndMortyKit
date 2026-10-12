@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Pilot",
+    "air_date": "December 2, 2013",
+    "episode": "S01E01",
+    "characters": [
+      "https://rickandmortyapi.com/api/character/1",
+      "https://rickandmortyapi.com/api/character/2",
+      "https://rickandmortyapi.com/api/character/24",
+      "https://rickandmortyapi.com/api/character/157",
+      "https://rickandmortyapi.com/api/character/244",
+      "https://rickandmortyapi.com/api/character/257",
+      "https://rickandmortyapi.com/api/character/273",
+      "https://rickandmortyapi.com/api/character/361",
+      "https://rickandmortyapi.com/api/character/480",
+      "https://rickandmortyapi.com/api/character/574",
+      "https://rickandmortyapi.com/api/character/660",
+      "https://rickandmortyapi.com/api/character/700",
+      "https://rickandmortyapi.com/api/character/730",
+      "https://rickandmortyapi.com/api/character/757",
+      "https://rickandmortyapi.com/api/character/769",
+      "https://rickandmortyapi.com/api/character/782"
+    ],
+    "url": "https://rickandmortyapi.com/api/episode/1",
+    "created": "2017-11-10T12:56:33.798Z"
+  },
+  {
+    "id": 2,
+    "name": "Lawnmower Dog",
+    "air_date": "December 9, 2013",
+    "episode": "S01E02",
+    "characters": [
+      "https://rickandmortyapi.com/api/character/1",
+      "https://rickandmortyapi.com/api/character/2",
+      "https://rickandmortyapi.com/api/character/174",
+      "https://rickandmortyapi.com/api/character/257",
+      "https://rickandmortyapi.com/api/character/298",
+      "https://rickandmortyapi.com/api/character/302",
+      "https://rickandmortyapi.com/api/character/503",
+      "https://rickandmortyapi.com/api/character/515",
+      "https://rickandmortyapi.com/api/character/591",
+      "https://rickandmortyapi.com/api/character/696",
+      "https://rickandmortyapi.com/api/character/720",
+      "https://rickandmortyapi.com/api/character/750",
+      "https://rickandmortyapi.com/api/character/819",
+      "https://rickandmortyapi.com/api/character/822"
+    ],
+    "url": "https://rickandmortyapi.com/api/episode/2",
+    "created": "2017-11-10T21:25:45.605Z"
+  },
+  {
+    "id": 3,
+    "name": "Anatomy Park",
+    "air_date": "December 16, 2013",
+    "episode": "S01E03",
+    "characters": [
+      "https://rickandmortyapi.com/api/character/1",
+      "https://rickandmortyapi.com/api/character/2",
+      "https://rickandmortyapi.com/api/character/12",
+      "https://rickandmortyapi.com/api/character/17",
+      "https://rickandmortyapi.com/api/character/81",
+      "https://rickandmortyapi.com/api/character/105",
+      "https://rickandmortyapi.com/api/character/117",
+      "https://rickandmortyapi.com/api/character/123",
+      "https://rickandmortyapi.com/api/character/160",
+      "https://rickandmortyapi.com/api/character/173",
+      "https://rickandmortyapi.com/api/character/374",
+      "https://rickandmortyapi.com/api/character/419",
+      "https://rickandmortyapi.com/api/character/468",
+      "https://rickandmortyapi.com/api/character/550",
+      "https://rickandmortyapi.com/api/character/698",
+      "https://rickandmortyapi.com/api/character/726",
+      "https://rickandmortyapi.com/api/character/799",
+      "https://rickandmortyapi.com/api/character/810"
+    ],
+    "url": "https://rickandmortyapi.com/api/episode/3",
+    "created": "2017-11-10T20:11:37.121Z"
+  }
+]

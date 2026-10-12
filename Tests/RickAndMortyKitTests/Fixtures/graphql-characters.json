@@ -1,0 +1,37 @@
+{
+  "data": {
+    "characters": {
+      "info": {
+        "count": 107,
+        "pages": 6,
+        "next": 2,
+        "prev": null
+      },
+      "results": [
+        {
+          "id": "1",
+          "name": "Rick Sanchez",
+          "status": "Alive",
+          "episode": [
+            {
+              "episode": "S01E01"
+            },
+            {
+              "episode": "S01E02"
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Adjudicator Rick",
+          "status": "Dead",
+          "episode": [
+            {
+              "episode": "S03E07"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

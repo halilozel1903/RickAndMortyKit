@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Earth (C-137)",
+    "type": "Planet",
+    "dimension": "Dimension C-137",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/86",
+      "https://rickandmortyapi.com/api/character/123",
+      "https://rickandmortyapi.com/api/character/313",
+      "https://rickandmortyapi.com/api/character/318",
+      "https://rickandmortyapi.com/api/character/375",
+      "https://rickandmortyapi.com/api/character/426",
+      "https://rickandmortyapi.com/api/character/450",
+      "https://rickandmortyapi.com/api/character/464",
+      "https://rickandmortyapi.com/api/character/488",
+      "https://rickandmortyapi.com/api/character/595",
+      "https://rickandmortyapi.com/api/character/626",
+      "https://rickandmortyapi.com/api/character/674",
+      "https://rickandmortyapi.com/api/character/711",
+      "https://rickandmortyapi.com/api/character/786"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/1",
+    "created": "2017-11-10T12:42:04.162Z"
+  },
+  {
+    "id": 3,
+    "name": "Citadel of Ricks",
+    "type": "Space station",
+    "dimension": "unknown",
+    "residents": [
+      "https://rickandmortyapi.com/api/character/1",
+      "https://rickandmortyapi.com/api/character/2",
+      "https://rickandmortyapi.com/api/character/8",
+      "https://rickandmortyapi.com/api/character/14",
+      "https://rickandmortyapi.com/api/character/15",
+      "https://rickandmortyapi.com/api/character/18",
+      "https://rickandmortyapi.com/api/character/92",
+      "https://rickandmortyapi.com/api/character/203",
+      "https://rickandmortyapi.com/api/character/298",
+      "https://rickandmortyapi.com/api/character/412",
+      "https://rickandmortyapi.com/api/character/697"
+    ],
+    "url": "https://rickandmortyapi.com/api/location/3",
+    "created": "2017-11-10T20:42:53.543Z"
+  }
+]

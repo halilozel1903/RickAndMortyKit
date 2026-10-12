@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  swift:
+    name: Swift tests (macOS)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+      - name: Toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
+
+  test:
+    name: Tests (iOS)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build & test on iOS Simulator
+        run: bash scripts/test.sh iOS
+
+  example:
+    name: Example app
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        working-directory: Example
+        run: xcodegen generate
+      - name: Build for iOS Simulator (iPhone and iPad)
+        run: |
+          xcodebuild build \
+            -project Example/RickAndMortyDemo.xcodeproj \
+            -scheme RickAndMortyDemo \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO
+
+  screenshots:
+    name: README screenshots
+    if: github.event_name != 'pull_request'
+    needs: [swift, test, example]
+    runs-on: macos-26
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        working-directory: Example
+        run: xcodegen generate
+      - name: Capture screenshots (iPhone and iPad)
+        run: >-
+          bash scripts/screenshots.sh RickAndMortyDemo io.github.halilozel1903.RickAndMortyDemo
+          --iphone characters character episodes
+          --ipad browser
+      - name: Commit screenshots
+        run: |
+          git config user.name "Halil Özel"
+          git config user.email "halilozel1903@gmail.com"
+          git add docs/screenshots
+          if git diff --cached --quiet; then
+            echo "Screenshots unchanged"
+          else
+            git commit -m "Update README screenshots [skip ci]"
+            git push
+          fi

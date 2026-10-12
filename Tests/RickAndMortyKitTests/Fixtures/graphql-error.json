@@ -1,0 +1,16 @@
+{
+  "errors": [
+    {
+      "message": "Cannot query field \"nmae\" on type \"Character\". Did you mean \"name\"?",
+      "locations": [
+        {
+          "line": 1,
+          "column": 32
+        }
+      ],
+      "extensions": {
+        "code": "GRAPHQL_VALIDATION_FAILED"
+      }
+    }
+  ]
+}

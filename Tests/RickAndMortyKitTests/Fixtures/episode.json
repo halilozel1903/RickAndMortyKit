@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "name": "Pilot",
+  "air_date": "December 2, 2013",
+  "episode": "S01E01",
+  "characters": [
+    "https://rickandmortyapi.com/api/character/1",
+    "https://rickandmortyapi.com/api/character/2",
+    "https://rickandmortyapi.com/api/character/24",
+    "https://rickandmortyapi.com/api/character/157",
+    "https://rickandmortyapi.com/api/character/244",
+    "https://rickandmortyapi.com/api/character/257",
+    "https://rickandmortyapi.com/api/character/273",
+    "https://rickandmortyapi.com/api/character/361",
+    "https://rickandmortyapi.com/api/character/480",
+    "https://rickandmortyapi.com/api/character/574",
+    "https://rickandmortyapi.com/api/character/660",
+    "https://rickandmortyapi.com/api/character/700",
+    "https://rickandmortyapi.com/api/character/730",
+    "https://rickandmortyapi.com/api/character/757",
+    "https://rickandmortyapi.com/api/character/769",
+    "https://rickandmortyapi.com/api/character/782"
+  ],
+  "url": "https://rickandmortyapi.com/api/episode/1",
+  "created": "2017-11-10T12:56:33.798Z"
+}

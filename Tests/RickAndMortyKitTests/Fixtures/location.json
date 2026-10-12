@@ -1,0 +1,24 @@
+{
+  "id": 1,
+  "name": "Earth (C-137)",
+  "type": "Planet",
+  "dimension": "Dimension C-137",
+  "residents": [
+    "https://rickandmortyapi.com/api/character/86",
+    "https://rickandmortyapi.com/api/character/123",
+    "https://rickandmortyapi.com/api/character/313",
+    "https://rickandmortyapi.com/api/character/318",
+    "https://rickandmortyapi.com/api/character/375",
+    "https://rickandmortyapi.com/api/character/426",
+    "https://rickandmortyapi.com/api/character/450",
+    "https://rickandmortyapi.com/api/character/464",
+    "https://rickandmortyapi.com/api/character/488",
+    "https://rickandmortyapi.com/api/character/595",
+    "https://rickandmortyapi.com/api/character/626",
+    "https://rickandmortyapi.com/api/character/674",
+    "https://rickandmortyapi.com/api/character/711",
+    "https://rickandmortyapi.com/api/character/786"
+  ],
+  "url": "https://rickandmortyapi.com/api/location/1",
+  "created": "2017-11-10T12:42:04.162Z"
+}
