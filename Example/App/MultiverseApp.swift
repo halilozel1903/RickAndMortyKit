@@ -15,9 +15,8 @@ struct MultiverseApp: App {
         WindowGroup {
             RootView(scene: scene)
                 .environment(multiverse)
-                // Screenshot scenes use the avatars generated for the demo; a normal launch loads
-                // the API's own images.
-                .rickAndMortyImageLoader(scene == nil ? .urlSession : DemoFixtures.imageLoader)
+                // Screenshot scenes count their image loads, to report ready once all are on screen.
+                .rickAndMortyImageLoader(scene == nil ? RickAndMortyImageLoader.urlSession : ScreenshotScene.imageLoader)
                 .preferredColorScheme(.dark)
                 .tint(Theme.portal)
         }

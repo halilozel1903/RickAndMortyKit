@@ -2,8 +2,8 @@ import Foundation
 import Observation
 import RickAndMortyKit
 
-/// The app's data, all from one `RickAndMortyClient`: paged character and location lists, every
-/// episode, and caches for the pages you open.
+/// The app's data, all from one `RickAndMortyClient` on the live API: paged character and
+/// location lists, every episode, and caches for the pages you open.
 @Observable
 @MainActor
 final class Multiverse {
@@ -19,20 +19,47 @@ final class Multiverse {
 
     @ObservationIgnored private var characterCache: [Int: RMCharacter] = [:]
     @ObservationIgnored private var locationCache: [Int: RMLocation] = [:]
+    /// How many times a request is tried before the error is shown.
+    private let attempts: Int
 
-    init(client: RickAndMortyClient) {
+    init(client: RickAndMortyClient, attempts: Int = 1) {
         self.client = client
+        let attempts = max(1, attempts)
+        self.attempts = attempts
         characters = PagedList<RMCharacter, CharacterFilter> { page, filter in
-            try await client.characters(page: page, filter: filter)
+            try await Multiverse.retrying(attempts: attempts) {
+                try await client.characters(page: page, filter: filter)
+            }
         }
         locations = PagedList<RMLocation, LocationFilter> { page, filter in
-            try await client.locations(page: page, filter: filter)
+            try await Multiverse.retrying(attempts: attempts) {
+                try await client.locations(page: page, filter: filter)
+            }
         }
     }
 
-    /// The live API, or the bundled fixtures for a screenshot scene.
+    /// The live API. Screenshot scenes retry failed requests a few times, since a capture must not
+    /// show an error.
     static func make(for scene: ScreenshotScene?) -> Multiverse {
-        Multiverse(client: scene == nil ? .shared : DemoFixtures.makeClient())
+        Multiverse(client: .shared, attempts: scene == nil ? 1 : 4)
+    }
+
+    /// Runs `operation`, trying again after a pause when it fails, up to `attempts` times.
+    nonisolated static func retrying<T: Sendable>(
+        attempts: Int,
+        _ operation: @Sendable () async throws -> T
+    ) async throws -> T {
+        var attempt = 1
+        while true {
+            do {
+                return try await operation()
+            } catch {
+                guard attempt < attempts, !Task.isCancelled else { throw error }
+                print("Request failed (attempt \(attempt) of \(attempts)): \(error)")
+                try await Task.sleep(for: .seconds(Double(attempt) * 2))
+                attempt += 1
+            }
+        }
     }
 
     // MARK: - Characters
@@ -41,21 +68,30 @@ final class Multiverse {
         if let cached = characterCache[id] ?? characters.items.first(where: { $0.id == id }) {
             return cached
         }
-        let character = try await client.character(id: id)
+        let client = self.client
+        let character = try await Self.retrying(attempts: attempts) {
+            try await client.character(id: id)
+        }
         characterCache[id] = character
         return character
     }
 
     /// The characters in an episode.
     func characters(in episode: RMEpisode) async throws -> [RMCharacter] {
-        let found = try await client.characters(in: episode)
+        let client = self.client
+        let found = try await Self.retrying(attempts: attempts) {
+            try await client.characters(in: episode)
+        }
         remember(found)
         return found
     }
 
     /// The characters last seen at a location.
     func residents(of location: RMLocation) async throws -> [RMCharacter] {
-        let found = try await client.residents(of: location)
+        let client = self.client
+        let found = try await Self.retrying(attempts: attempts) {
+            try await client.residents(of: location)
+        }
         remember(found)
         return found
     }
@@ -72,7 +108,10 @@ final class Multiverse {
         if let cached = locationCache[id] ?? locations.items.first(where: { $0.id == id }) {
             return cached
         }
-        let location = try await client.location(id: id)
+        let client = self.client
+        let location = try await Self.retrying(attempts: attempts) {
+            try await client.location(id: id)
+        }
         locationCache[id] = location
         return location
     }
@@ -89,7 +128,10 @@ final class Multiverse {
     func loadEpisodes() async {
         guard episodes.isEmpty else { return }
         do {
-            let all = try await client.allEpisodes().collect()
+            let client = self.client
+            let all = try await Self.retrying(attempts: attempts) {
+                try await client.allEpisodes().collect()
+            }
             episodes = all
             episodesError = nil
         } catch {
@@ -102,7 +144,10 @@ final class Multiverse {
         if let known = episodes.first(where: { $0.id == id }) {
             return known
         }
-        return try await client.episode(id: id)
+        let client = self.client
+        return try await Self.retrying(attempts: attempts) {
+            try await client.episode(id: id)
+        }
     }
 
     /// The episodes a character appears in: from the loaded list when it has them all, else in
@@ -116,7 +161,10 @@ final class Multiverse {
                 return found
             }
         }
-        return try await client.episodes(of: character)
+        let client = self.client
+        return try await Self.retrying(attempts: attempts) {
+            try await client.episodes(of: character)
+        }
     }
 }
 

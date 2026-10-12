@@ -36,7 +36,8 @@ struct EpisodesScreen: View {
                 RouteDestination(route)
             }
         }
-        .signalsScreenshotReady(scene, when: !multiverse.episodes.isEmpty)
+        // Episodes have no images.
+        .signalsScreenshotReady(scene, when: !multiverse.episodes.isEmpty, expectsImages: false)
     }
 
     private var seasons: [SeasonGroup] {

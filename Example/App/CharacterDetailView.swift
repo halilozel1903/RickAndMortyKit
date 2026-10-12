@@ -15,6 +15,8 @@ struct CharacterDetailView: View {
     @State private var origin: RMLocation?
     @State private var location: RMLocation?
     @State private var errorMessage: String?
+    /// Whether the origin, location or episodes failed to load; the page then shows what it has.
+    @State private var partFailed = false
 
     init(characterID: Int, scene: ScreenshotScene? = nil) {
         self.characterID = characterID
@@ -43,7 +45,13 @@ struct CharacterDetailView: View {
         .task(id: characterID) {
             await load()
         }
-        .signalsScreenshotReady(scene, when: character != nil && episodesLoaded)
+        .signalsScreenshotReady(scene, when: isComplete)
+    }
+
+    /// Whether everything on the page has loaded, and on iPad the character list beside it.
+    private var isComplete: Bool {
+        guard character != nil, episodesLoaded, !partFailed else { return false }
+        return scene != .browser || !multiverse.characters.items.isEmpty
     }
 
     private func load() async {
@@ -58,14 +66,24 @@ struct CharacterDetailView: View {
             return
         }
         character = loaded
+        partFailed = false
         // The origin and location are URLs; resolve them to show their type and dimension.
-        origin = try? await multiverse.location(loaded.origin)
-        if loaded.location.id == loaded.origin.id {
-            location = origin
-        } else {
-            location = try? await multiverse.location(loaded.location)
+        do {
+            origin = try await multiverse.location(loaded.origin)
+            if loaded.location.id == loaded.origin.id {
+                location = origin
+            } else {
+                location = try await multiverse.location(loaded.location)
+            }
+        } catch {
+            partFailed = true
         }
-        episodes = (try? await multiverse.episodes(of: loaded)) ?? []
+        do {
+            episodes = try await multiverse.episodes(of: loaded)
+        } catch {
+            episodes = []
+            partFailed = true
+        }
         episodesLoaded = true
     }
 

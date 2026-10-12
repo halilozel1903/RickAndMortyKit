@@ -35,7 +35,7 @@ for try await episode in api.allEpisodes() {             // every page, loaded a
 
 ## Screenshots
 
-Captured by CI from the example app, *Multiverse*, on an iPhone and an iPad simulator. The screenshot scenes load hand-written JSON fixtures in the API's exact shapes, and the avatars are original artwork generated for the demo, not the show's. A normal launch uses the live API.
+Captured by CI from the example app, *Multiverse*, on an iPhone and an iPad simulator, with real data and character images loaded live from [rickandmortyapi.com](https://rickandmortyapi.com): the first page of characters, Rick Sanchez's page and the episodes, starting with season 1.
 
 | Characters | Character | Episodes |
 | :---: | :---: | :---: |
@@ -297,13 +297,13 @@ cd Example && xcodegen generate
 open RickAndMortyDemo.xcodeproj
 ```
 
-Run `RickAndMortyDemo` on an iPhone or iPad simulator. Normal launches use the live API. Launch with `-screenshot characters|character|episodes` (iPhone) or `-screenshot browser` (iPad) to open a fixed scene from the bundled fixtures, as CI does for the screenshots above.
+Run `RickAndMortyDemo` on an iPhone or iPad simulator. The app always uses the live API. Launch with `-screenshot characters|character|episodes` (iPhone) or `-screenshot browser` (iPad) to open a fixed scene, as CI does for the screenshots above.
 
 ## Trademark and data
 
 Rick and Morty is a trademark of its owners. RickAndMortyKit is an unofficial, fan-made client and is not affiliated with or endorsed by them or by the API's authors. The data comes from [rickandmortyapi.com](https://rickandmortyapi.com), a free community API; please be kind to it and cache what you can.
 
-The avatars and the app icon in this repository are abstract artwork generated for the demo; no artwork from the show is included.
+The character images in the app and in the README screenshots are loaded from rickandmortyapi.com and belong to their owners; apart from the screenshots, no artwork from the show is stored in this repository, and the app icon is original artwork made for the demo. The JSON fixtures used by the unit tests are hand-written in the API's shapes.
 
 ## Requirements
 
